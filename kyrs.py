@@ -100,3 +100,34 @@ f"Общая сумма выплат: {total_payment:,.2f} ₽\n"
             total_interest += interest_payment
 
         return payments, total_interest
+
+    def get_positive_float(self, value, field_name):
+            """Проверка на положительное вещественное число."""
+            if not value.strip():
+                raise ValueError(f"Поле '{field_name}' не должно быть пустым.")
+            try:
+                number = float(value)
+                if number <= 0:
+                    raise ValueError
+                return number
+            except ValueError:
+                raise ValueError(f"Поле '{field_name}' должно быть положительным числом.")
+    
+        def get_positive_int(self, value, field_name):
+            """Проверка на положительное целое число."""
+            if not value.strip():
+                raise ValueError(f"Поле '{field_name}' не должно быть пустым.")
+            try:
+                number = int(value)
+                if number <= 0:
+                    raise ValueError
+                return number
+            except ValueError:
+                raise ValueError(f"Поле '{field_name}' должно быть положительным целым числом.")
+    
+    
+    if __name__ == "__main__":
+        root = tk.Tk()
+        app = MortgageCalculatorApp(root)
+        root.mainloop()
+
